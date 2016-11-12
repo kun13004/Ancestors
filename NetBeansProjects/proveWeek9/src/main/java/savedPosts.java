@@ -59,7 +59,7 @@ public class savedPosts implements postDataHandler {
             while ((line = reader.readLine()) != null) {
                 Post post = new Post();
                 post.loadFromFileString(line);
-                list.add(post);
+                list.add(0, post);
             }
 
         } catch (IOException e) { 
