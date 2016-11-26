@@ -20,6 +20,10 @@ public class DBHelper {
    static final String FIRST_NAME = "first_name";
    static final String LAST_NAME = "last_name";
    static final String BIRTH_DATE = "birth_date";
+   static final String LOCAL_DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=Deddinsed2";
+   //Tim's local DB settings
+   //static final String LOCAL_DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=oumtg8k";
+
    
    // Relation table
    static final String T_RELATION = "relation";
@@ -34,7 +38,8 @@ public class DBHelper {
             Class.forName(JDBC_DRIVER);
             String DATABASE_URL = System.getenv("JDBC_DATABASE_URL");
             if (DATABASE_URL == null) {
-                DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=Deddinsed2";
+                DATABASE_URL = LOCAL_DATABASE_URL;
+                
             }
             conn = DriverManager.getConnection(DATABASE_URL);
             stmt = conn.createStatement();
@@ -62,7 +67,7 @@ public class DBHelper {
             Class.forName(JDBC_DRIVER);
             String DATABASE_URL = System.getenv("JDBC_DATABASE_URL");
             if (DATABASE_URL == null) {
-                DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=Deddinsed2";
+                DATABASE_URL = LOCAL_DATABASE_URL;
             }
             conn = DriverManager.getConnection(DATABASE_URL);
             stmt = conn.createStatement();
@@ -88,7 +93,7 @@ public class DBHelper {
             Class.forName(JDBC_DRIVER);
             String DATABASE_URL = System.getenv("JDBC_DATABASE_URL");
             if (DATABASE_URL == null) {
-                DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=Deddinsed2";
+                DATABASE_URL = LOCAL_DATABASE_URL;
             }
             conn = DriverManager.getConnection(DATABASE_URL);
             stmt = conn.createStatement();
@@ -115,7 +120,7 @@ public class DBHelper {
             Class.forName(JDBC_DRIVER);
             String DATABASE_URL = System.getenv("JDBC_DATABASE_URL");
             if (DATABASE_URL == null) {
-                DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=Deddinsed2";
+                DATABASE_URL = LOCAL_DATABASE_URL;
             }
             conn = DriverManager.getConnection(DATABASE_URL);
             stmt = conn.createStatement();
@@ -143,7 +148,7 @@ public class DBHelper {
             Class.forName(JDBC_DRIVER);
             String DATABASE_URL = System.getenv("JDBC_DATABASE_URL");
             if (DATABASE_URL == null) {
-                DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=Deddinsed2";
+                DATABASE_URL = LOCAL_DATABASE_URL;
             }
             conn = DriverManager.getConnection(DATABASE_URL);
             stmt = conn.createStatement();
@@ -172,7 +177,7 @@ public class DBHelper {
             Class.forName(JDBC_DRIVER);
             String DATABASE_URL = System.getenv("JDBC_DATABASE_URL");
             if (DATABASE_URL == null) {
-                DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=Deddinsed2";
+                DATABASE_URL = LOCAL_DATABASE_URL;
             }
             conn = DriverManager.getConnection(DATABASE_URL);
             stmt = conn.createStatement();
