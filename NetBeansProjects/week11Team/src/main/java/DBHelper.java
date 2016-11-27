@@ -51,8 +51,9 @@ public class DBHelper {
                    FIRST_NAME + " VARCHAR(255) NOT NULL, " + 
                    LAST_NAME + " VARCHAR(255) NOT NULL, " + 
                    BIRTH_DATE + " VARCHAR(255) NOT NULL,"
-                    + "UNIQUE (" + FIRST_NAME + ", " + LAST_NAME + ", " + BIRTH_DATE + "))";
+                    + " UNIQUE (" + FIRST_NAME + ", " + LAST_NAME + ", " + BIRTH_DATE + "))";
             stmt.executeUpdate(sql);
+            
             }
         } catch(SQLException se) {
             se.printStackTrace();
@@ -75,11 +76,12 @@ public class DBHelper {
             conn = DriverManager.getConnection(DATABASE_URL);
             stmt = conn.createStatement();
             
-            String sql = "CREATE TABLE IF NOT EXISTS" + T_RELATION +
+            String sql = "CREATE TABLE IF NOT EXISTS " + T_RELATION +
                    "(id SERIAL PRIMARY KEY, " +
                    FK_PARENT + " INTEGER REFERENCES " + T_PERSON + " (id)," + 
                    FK_CHILD + " INTEGER REFERENCES " + T_PERSON + " (id))";
             stmt.executeUpdate(sql);
+            
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -88,7 +90,7 @@ public class DBHelper {
     }
     
     
-    public void insertIntoPersonTable(String first_name, String last_name, String birth_date) {
+    public void insertIntoPersonTable(String first, String last, String birth) {
         Connection conn = null;
         Statement stmt = null;
         
@@ -100,13 +102,11 @@ public class DBHelper {
             }
             conn = DriverManager.getConnection(DATABASE_URL);
             stmt = conn.createStatement();
-            
+                        
             String sql = "INSERT INTO " + T_PERSON +
-                    "(" + FIRST_NAME + ", " + LAST_NAME + ", " + BIRTH_DATE + ") "
-                    + "VALUES (" + first_name + ", " + last_name + ", " + birth_date;
+                    " (first_name, last_name, birth_date) VALUES ('" + first + "', '" + last + "', '" + birth + "')";
             stmt.executeUpdate(sql);
             
-            stmt.executeUpdate(sql);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -133,7 +133,6 @@ public class DBHelper {
                     fk_child;
             stmt.executeUpdate(sql);
             
-            stmt.executeUpdate(sql);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -158,9 +157,7 @@ public class DBHelper {
             
             String sql = "SELECT * FROM " + T_PERSON + " WHERE " + FIRST_NAME + " = " + first_name;
             rs = stmt.executeQuery(sql);
-            
-            stmt.executeUpdate(sql);
-            
+                        
             return rs;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
@@ -187,8 +184,6 @@ public class DBHelper {
             
             String sql = "SELECT * FROM " + T_PERSON;
             rs = stmt.executeQuery(sql);
-            
-            stmt.executeUpdate(sql);
             
             return rs;
         } catch (ClassNotFoundException ex) {
