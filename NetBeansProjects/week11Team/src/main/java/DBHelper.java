@@ -41,7 +41,7 @@ public class DBHelper {
             String DATABASE_URL = System.getenv("JDBC_DATABASE_URL");
             if (DATABASE_URL == null) {
                 DATABASE_URL = LOCAL_DATABASE_URL;
-                
+            }
             
             conn = DriverManager.getConnection(DATABASE_URL);
             stmt = conn.createStatement();
@@ -53,13 +53,11 @@ public class DBHelper {
                    BIRTH_DATE + " VARCHAR(255) NOT NULL,"
                     + " UNIQUE (" + FIRST_NAME + ", " + LAST_NAME + ", " + BIRTH_DATE + "))";
             stmt.executeUpdate(sql);
-            
-            }
-        } catch(SQLException se) {
-            se.printStackTrace();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+           Logger.getLogger(DBHelper.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
     
     
