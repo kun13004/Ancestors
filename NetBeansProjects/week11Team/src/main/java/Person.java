@@ -20,27 +20,27 @@ public class Person {
         birth = null;
     }
     
-    public void setFirstName(String first) {
+    public void setFirst(String first) {
         this.first = first;
     }
     
-    public void setLastName(String last) {
+    public void setLast(String last) {
         this.last = last;
     }
     
-    public void setBirthDate(String birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
     }
     
-    public String getfirst() {
+    public String getFirst() {
         return first;
     }
     
-    public String getlast() {
+    public String getLast() {
         return last;
     }
     
-    public String getbirth() {
+    public String getBirth() {
         return birth;
     }
 }

@@ -4,6 +4,7 @@
     Author     : Elgalad
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,9 +14,9 @@
     </head>
     <body>
         <h1>People in Database</h1>
-        <c:forEach items="${people}" var="person">
-            <p> ${person.first} </p>
-            <p> ${person.last} </p>
+        <c:forEach var="person" items="${people}" >
+            <p>${person.first}</p>
+            <p>${person.last}</p>
         </c:forEach>
     </body>
 </html>

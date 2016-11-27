@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -52,19 +54,20 @@ public class ShowPeople extends HttpServlet {
                 System.out.println(rs.getString(2));
                 String first = rs.getString(2);
                 Person person = new Person();
-                person.setFirstName(first);
-                person.setLastName(rs.getString(3));
-                person.setBirthDate(rs.getString(4));
+                person.setFirst(first);
+                person.setLast(rs.getString(3));
+                person.setBirth(rs.getString(4));
                 list.add(person);
             }
+            
             
             System.out.println(list.size());
             
             request.setAttribute("people", list);
             request.getRequestDispatcher("SearchPeople.jsp").forward(request, response);
-        } catch(SQLException se) {
-            se.printStackTrace();
-        }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowPeople.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
