@@ -13,8 +13,9 @@
     </head>
     <body>
         <h1>People in Database</h1>
-        <c:forEach items="${people}" var="ancestor">
-            <p>( ${ancestor.first} )</p>
+        <c:forEach items="${people}" var="person">
+            <p> ${person.first} </p>
+            <p> ${person.last} </p>
         </c:forEach>
     </body>
 </html>
