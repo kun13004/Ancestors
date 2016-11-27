@@ -90,8 +90,8 @@ public class DBHelper {
     
 
     public void insertIntoPersonTable(String first, String last, String birth) {
-        Connection conn = null;
-        Statement stmt = null;
+        //Connection conn = null;
+        //Statement stmt = null;
         
         try {
             Class.forName(JDBC_DRIVER);
@@ -100,8 +100,8 @@ public class DBHelper {
                 DATABASE_URL = LOCAL_DATABASE_URL;
             }
 
-            conn = DriverManager.getConnection(DATABASE_URL);
-            stmt = conn.createStatement();
+            Connection conn = DriverManager.getConnection(DATABASE_URL);
+            Statement stmt = conn.createStatement();
                         
             String sql = "INSERT INTO " + T_PERSON +
                     " (first_name, last_name, birth_date) VALUES ('" + first + "', '" + last + "', '" + birth + "')";
