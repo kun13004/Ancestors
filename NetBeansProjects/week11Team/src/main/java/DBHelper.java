@@ -41,8 +41,8 @@ public class DBHelper {
             String DATABASE_URL = System.getenv("JDBC_DATABASE_URL");
             if (DATABASE_URL == null) {
                 DATABASE_URL = LOCAL_DATABASE_URL;
-                
             }
+            
             conn = DriverManager.getConnection(DATABASE_URL);
             stmt = conn.createStatement();
             
@@ -79,11 +79,11 @@ public class DBHelper {
                    FK_PARENT + " INTEGER REFERENCES " + T_PERSON + " (id)," + 
                    FK_CHILD + " INTEGER REFERENCES " + T_PERSON + " (id))";
             stmt.executeUpdate(sql);
-        } catch(SQLException se) {
-            se.printStackTrace();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+           Logger.getLogger(DBHelper.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
     
     
@@ -106,11 +106,11 @@ public class DBHelper {
             stmt.executeUpdate(sql);
             
             stmt.executeUpdate(sql);
-        } catch(SQLException se) {
-            se.printStackTrace();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+           Logger.getLogger(DBHelper.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
     
     
@@ -133,11 +133,11 @@ public class DBHelper {
             stmt.executeUpdate(sql);
             
             stmt.executeUpdate(sql);
-        } catch(SQLException se) {
-            se.printStackTrace();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+           Logger.getLogger(DBHelper.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
     
     
@@ -161,11 +161,11 @@ public class DBHelper {
             stmt.executeUpdate(sql);
             
             return rs;
-        } catch(SQLException se) {
-            se.printStackTrace();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+           Logger.getLogger(DBHelper.class.getName()).log(Level.SEVERE, null, ex);
+       }
         return rs;
     }
     
@@ -190,11 +190,11 @@ public class DBHelper {
             stmt.executeUpdate(sql);
             
             return rs;
-        } catch(SQLException se) {
-            se.printStackTrace();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+           Logger.getLogger(DBHelper.class.getName()).log(Level.SEVERE, null, ex);
+       }
         return rs;
     }
             
