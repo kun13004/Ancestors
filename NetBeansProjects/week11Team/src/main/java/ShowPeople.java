@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author Elgalad
  */
-@WebServlet(urlPatterns = {"/ShowPeople"})
+@WebServlet(name = "ShowPeople", urlPatterns = {"/ShowPeople"})
 public class ShowPeople extends HttpServlet {
 
     /**
@@ -43,18 +43,22 @@ public class ShowPeople extends HttpServlet {
         
             db.insertIntoPersonTable("LaRell", "Kunz", "06/07/1937");
             db.insertIntoPersonTable("Kory", "Kunz", "07/26/1963");
+            db.insertIntoPersonTable("Austin", "Kunz", "03/31/1992");
         
             rs = db.queryPersonTable();
         
             List<Person> list = new ArrayList();
             while (rs.next()) {
                 System.out.println(rs.getString(2));
+                String first = rs.getString(2);
                 Person person = new Person();
-                person.setFirstName(rs.getString(2));
+                person.setFirstName(first);
                 person.setLastName(rs.getString(3));
                 person.setBirthDate(rs.getString(4));
                 list.add(person);
             }
+            
+            System.out.println(list.size());
             
             request.setAttribute("people", list);
             request.getRequestDispatcher("SearchPeople.jsp").forward(request, response);
