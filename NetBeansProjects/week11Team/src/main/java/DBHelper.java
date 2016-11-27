@@ -33,8 +33,8 @@ public class DBHelper {
    static final String FK_CHILD = "child_id";
     
     public void createPersonTable() {
-        Connection conn = null;
-        Statement stmt = null;
+        // Connection conn = null;
+        // Statement stmt = null;
         
         try {
             Class.forName(JDBC_DRIVER);
@@ -43,8 +43,8 @@ public class DBHelper {
                 DATABASE_URL = LOCAL_DATABASE_URL;
             }
             
-            conn = DriverManager.getConnection(DATABASE_URL);
-            stmt = conn.createStatement();
+            Connection conn = DriverManager.getConnection(DATABASE_URL);
+            Statement stmt = conn.createStatement();
             
             String sql = "CREATE TABLE IF NOT EXISTS " + T_PERSON +
                    "(id SERIAL PRIMARY KEY, " +
@@ -62,8 +62,8 @@ public class DBHelper {
     
     
     public void createRelationsTable() {
-        Connection conn = null;
-        Statement stmt = null;
+        //Connection conn = null;
+        //Statement stmt = null;
         
         try {
             Class.forName(JDBC_DRIVER);
@@ -71,8 +71,8 @@ public class DBHelper {
             if (DATABASE_URL == null) {
                 DATABASE_URL = LOCAL_DATABASE_URL;
             }
-            conn = DriverManager.getConnection(DATABASE_URL);
-            stmt = conn.createStatement();
+            Connection conn = DriverManager.getConnection(DATABASE_URL);
+            Statement stmt = conn.createStatement();
             
             String sql = "CREATE TABLE IF NOT EXISTS" + T_RELATION +
                    "(id SERIAL PRIMARY KEY, " +
@@ -88,8 +88,8 @@ public class DBHelper {
     
     
     public void insertIntoPersonTable(String first_name, String last_name, String birth_date) {
-        Connection conn = null;
-        Statement stmt = null;
+        //Connection conn = null;
+        //Statement stmt = null;
         
         try {
             Class.forName(JDBC_DRIVER);
@@ -97,8 +97,8 @@ public class DBHelper {
             if (DATABASE_URL == null) {
                 DATABASE_URL = LOCAL_DATABASE_URL;
             }
-            conn = DriverManager.getConnection(DATABASE_URL);
-            stmt = conn.createStatement();
+            Connection conn = DriverManager.getConnection(DATABASE_URL);
+            Statement stmt = conn.createStatement();
             
             String sql = "INSERT INTO " + T_PERSON +
                     "(" + FIRST_NAME + ", " + LAST_NAME + ", " + BIRTH_DATE + ") "
@@ -115,8 +115,8 @@ public class DBHelper {
     
     
     public void insertIntoRelationTable(int fk_parent, int fk_child) {
-        Connection conn = null;
-        Statement stmt = null;
+        //Connection conn = null;
+        //Statement stmt = null;
         
         try {
             Class.forName(JDBC_DRIVER);
@@ -124,8 +124,8 @@ public class DBHelper {
             if (DATABASE_URL == null) {
                 DATABASE_URL = LOCAL_DATABASE_URL;
             }
-            conn = DriverManager.getConnection(DATABASE_URL);
-            stmt = conn.createStatement();
+            Connection conn = DriverManager.getConnection(DATABASE_URL);
+            Statement stmt = conn.createStatement();
             
             String sql = "INSERT INTO " + T_PERSON +
                     "(" + FK_PARENT + ", " + FK_CHILD + ") VALUES (" + fk_parent + ", " + 
@@ -142,8 +142,8 @@ public class DBHelper {
     
     
     public ResultSet queryOnePerson(String first_name) {
-        Connection conn = null;
-        Statement stmt = null;
+        //Connection conn = null;
+        //Statement stmt = null;
         ResultSet rs = null;
         
         try {
@@ -152,8 +152,8 @@ public class DBHelper {
             if (DATABASE_URL == null) {
                 DATABASE_URL = LOCAL_DATABASE_URL;
             }
-            conn = DriverManager.getConnection(DATABASE_URL);
-            stmt = conn.createStatement();
+            Connection conn = DriverManager.getConnection(DATABASE_URL);
+            Statement stmt = conn.createStatement();
             
             String sql = "SELECT * FROM " + T_PERSON + " WHERE " + FIRST_NAME + " = " + first_name;
             rs = stmt.executeQuery(sql);
@@ -171,8 +171,8 @@ public class DBHelper {
     
     
     public ResultSet queryPersonTable() {
-        Connection conn = null;
-        Statement stmt = null;
+        //Connection conn = null;
+        //Statement stmt = null;
         ResultSet rs = null;
         
         try {
@@ -181,8 +181,8 @@ public class DBHelper {
             if (DATABASE_URL == null) {
                 DATABASE_URL = LOCAL_DATABASE_URL;
             }
-            conn = DriverManager.getConnection(DATABASE_URL);
-            stmt = conn.createStatement();
+            Connection conn = DriverManager.getConnection(DATABASE_URL);
+            Statement stmt = conn.createStatement();
             
             String sql = "SELECT * FROM " + T_PERSON;
             rs = stmt.executeQuery(sql);
