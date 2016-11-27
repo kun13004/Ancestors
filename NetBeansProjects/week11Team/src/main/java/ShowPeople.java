@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author Elgalad
  */
-@WebServlet(urlPatterns = {"/ShowPeople"})
+@WebServlet(name = "ShowPeople", urlPatterns = {"/ShowPeople"})
 public class ShowPeople extends HttpServlet {
 
     /**
@@ -33,6 +33,7 @@ public class ShowPeople extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ResultSet rs = null;
         
         try {
             DBHelper db = new DBHelper();
@@ -41,23 +42,25 @@ public class ShowPeople extends HttpServlet {
             db.createRelationsTable();
         
             db.insertIntoPersonTable("LaRell", "Kunz", "06/07/1937");
-            db.insertIntoPersonTable("Dean", "Whiting", "10/21/1938");
-            db.insertIntoPersonTable("Deanna", "Daw", "01/13/1942");
-            db.insertIntoPersonTable("Douglas", "Andrus", "04/29/1941");
+            db.insertIntoPersonTable("Kory", "Kunz", "07/26/1963");
+            db.insertIntoPersonTable("Austin", "Kunz", "03/31/1992");
         
-            ResultSet rs = db.queryPersonTable();
+            rs = db.queryPersonTable();
         
             List<Person> list = new ArrayList();
-
             while (rs.next()) {
+                System.out.println(rs.getString(2));
+                String first = rs.getString(2);
                 Person person = new Person();
-                person.setFirstName(rs.getString(1));
-                person.setLastName(rs.getString(2));
-                person.setBirthDate(rs.getString(3));
+                person.setFirstName(first);
+                person.setLastName(rs.getString(3));
+                person.setBirthDate(rs.getString(4));
                 list.add(person);
             }
-        
-            request.setAttribute("person", list);
+            
+            System.out.println(list.size());
+            
+            request.setAttribute("people", list);
             request.getRequestDispatcher("SearchPeople.jsp").forward(request, response);
         } catch(SQLException se) {
             se.printStackTrace();

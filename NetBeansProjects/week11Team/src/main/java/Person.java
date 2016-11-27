@@ -10,9 +10,9 @@
  */
 public class Person {
     
-    private String first;
-    private String last;
-    private String birth;
+    public String first;
+    public String last;
+    public String birth;
     
     Person () {
         first = null;
@@ -32,4 +32,15 @@ public class Person {
         this.birth = birth;
     }
     
+    public String getfirst() {
+        return first;
+    }
+    
+    public String getlast() {
+        return last;
+    }
+    
+    public String getbirth() {
+        return birth;
+    }
 }

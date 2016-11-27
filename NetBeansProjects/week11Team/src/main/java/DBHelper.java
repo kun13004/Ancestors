@@ -22,9 +22,9 @@ public class DBHelper {
    static final String FIRST_NAME = "first_name";
    static final String LAST_NAME = "last_name";
    static final String BIRTH_DATE = "birth_date";
-   //static final String LOCAL_DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=Deddinsed2";
+   static final String LOCAL_DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=Deddinsed2";
    //Tim's local DB settings
-   static final String LOCAL_DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=oumtg8k";
+   //static final String LOCAL_DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=oumtg8k";
 
    
    // Relation table
@@ -51,7 +51,7 @@ public class DBHelper {
                    FIRST_NAME + " VARCHAR(255) NOT NULL, " + 
                    LAST_NAME + " VARCHAR(255) NOT NULL, " + 
                    BIRTH_DATE + " VARCHAR(255) NOT NULL,"
-                    + "UNIQUE (" + FIRST_NAME + ", " + LAST_NAME + ", " + BIRTH_DATE + "))";
+                    + " UNIQUE (" + FIRST_NAME + ", " + LAST_NAME + ", " + BIRTH_DATE + "))";
             stmt.executeUpdate(sql);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
@@ -74,11 +74,12 @@ public class DBHelper {
             Connection conn = DriverManager.getConnection(DATABASE_URL);
             Statement stmt = conn.createStatement();
             
-            String sql = "CREATE TABLE IF NOT EXISTS" + T_RELATION +
+            String sql = "CREATE TABLE IF NOT EXISTS " + T_RELATION +
                    "(id SERIAL PRIMARY KEY, " +
                    FK_PARENT + " INTEGER REFERENCES " + T_PERSON + " (id)," + 
                    FK_CHILD + " INTEGER REFERENCES " + T_PERSON + " (id))";
             stmt.executeUpdate(sql);
+            
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -87,9 +88,10 @@ public class DBHelper {
     }
     
     
-    public void insertIntoPersonTable(String first_name, String last_name, String birth_date) {
-        //Connection conn = null;
-        //Statement stmt = null;
+
+    public void insertIntoPersonTable(String first, String last, String birth) {
+        Connection conn = null;
+        Statement stmt = null;
         
         try {
             Class.forName(JDBC_DRIVER);
@@ -97,15 +99,14 @@ public class DBHelper {
             if (DATABASE_URL == null) {
                 DATABASE_URL = LOCAL_DATABASE_URL;
             }
-            Connection conn = DriverManager.getConnection(DATABASE_URL);
-            Statement stmt = conn.createStatement();
-            
+
+            conn = DriverManager.getConnection(DATABASE_URL);
+            stmt = conn.createStatement();
+                        
             String sql = "INSERT INTO " + T_PERSON +
-                    "(" + FIRST_NAME + ", " + LAST_NAME + ", " + BIRTH_DATE + ") "
-                    + "VALUES (" + first_name + ", " + last_name + ", " + birth_date;
+                    " (first_name, last_name, birth_date) VALUES ('" + first + "', '" + last + "', '" + birth + "')";
             stmt.executeUpdate(sql);
             
-            stmt.executeUpdate(sql);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -132,7 +133,6 @@ public class DBHelper {
                     fk_child;
             stmt.executeUpdate(sql);
             
-            stmt.executeUpdate(sql);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -157,9 +157,7 @@ public class DBHelper {
             
             String sql = "SELECT * FROM " + T_PERSON + " WHERE " + FIRST_NAME + " = " + first_name;
             rs = stmt.executeQuery(sql);
-            
-            stmt.executeUpdate(sql);
-            
+                        
             return rs;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
@@ -186,8 +184,6 @@ public class DBHelper {
             
             String sql = "SELECT * FROM " + T_PERSON;
             rs = stmt.executeQuery(sql);
-            
-            stmt.executeUpdate(sql);
             
             return rs;
         } catch (ClassNotFoundException ex) {
