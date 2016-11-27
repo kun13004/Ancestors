@@ -32,15 +32,15 @@ public class Person {
         this.birth = birth;
     }
     
-    public String getFirstName() {
+    public String getfirst() {
         return first;
     }
     
-    public String getLastName() {
+    public String getlast() {
         return last;
     }
     
-    public String getBirthDate() {
+    public String getbirth() {
         return birth;
     }
 }
