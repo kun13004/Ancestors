@@ -10,9 +10,9 @@
  */
 public class Person {
     
-    private String first;
-    private String last;
-    private String birth;
+    public String first;
+    public String last;
+    public String birth;
     
     Person () {
         first = null;
