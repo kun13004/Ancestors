@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>People in Database</h1>
-        <c:forEach var="person" items="${person}">
+        <c:forEach var="person" items="${people}">
             <p>${person.first_name} ${person.last_name}</p>
         </c:forEach>
     </body>
