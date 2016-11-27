@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,9 +22,9 @@ public class DBHelper {
    static final String FIRST_NAME = "first_name";
    static final String LAST_NAME = "last_name";
    static final String BIRTH_DATE = "birth_date";
-   static final String LOCAL_DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=Deddinsed2";
+   //static final String LOCAL_DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=Deddinsed2";
    //Tim's local DB settings
-   //static final String LOCAL_DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=oumtg8k";
+   static final String LOCAL_DATABASE_URL = "jdbc:postgresql://localhost:5432/ancestors?user=postgres&password=oumtg8k";
 
    
    // Relation table
@@ -51,11 +53,11 @@ public class DBHelper {
                    BIRTH_DATE + " VARCHAR(255) NOT NULL,"
                     + "UNIQUE (" + FIRST_NAME + ", " + LAST_NAME + ", " + BIRTH_DATE + "))";
             stmt.executeUpdate(sql);
-        } catch(SQLException se) {
-            se.printStackTrace();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+           Logger.getLogger(DBHelper.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
     
     
